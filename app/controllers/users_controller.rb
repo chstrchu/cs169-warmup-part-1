@@ -1,9 +1,5 @@
 class UsersController < ApplicationController
-  SUCCESS = 1
-  ERR_BAD_CREDENTIALS = -1
-  ERR_USER_EXISTS = -2
-  ERR_BAD_USERNAME = -3
-  ERR_BAD_PASSWORD = -4
+  
   
   
   def create
@@ -18,43 +14,18 @@ class UsersController < ApplicationController
   end
   
   def add
-    @user = User.new(user: params[:user], password: params[:password], count: 1)
-    name = User.find_by user: params[:user]
-    if name != nil
-      print ERR_USER_EXISTS
-      return ERR_USER_EXISTS
-    end
-    if params[:user].length > 128 or params[:user] == nil
-      print ERR_BAD_USERNAME
-      return ERR_BAD_USERNAME
-    end
-    if params[:password].length > 128
-      print ERR_BAD_PASSWORD
-      return ERR_BAD_PASSWORD
-    else
-      @user.save
-      
-      print SUCCESS
-      return SUCCESS
-    end
+    user = User.new(user: params[:user], password: params[:password])
+    user.add()
   end
  
-  def login   
-    user = User.find_by user: params[:user]
-    if user == nil
-      print ERR_BAD_CREDENTIALS
-      return ERR_BAD_CREDENTIALS
-    else  
-      user.count = user.count + 1
-      user.save
-      print user.count
-      return user.count
-    end
+  def login
+    user = User.new(user: params[:user], password: params[:password])   
+    user.login()
   end
   
-  def TESTAPI_resetFixture
-     User.destroy_all()
-     return SUCCESS
+  def testAPI_resetFixture
+    user = User.new(user: "dummy")
+    user.testAPI_resetFixture()
   end 
   
   
