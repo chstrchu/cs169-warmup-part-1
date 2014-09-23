@@ -33,14 +33,14 @@ class UsersController < ApplicationController
       return ERR_BAD_PASSWORD
     else
       @user.save
-      redirect_to @user
+      
       print SUCCESS
       return SUCCESS
     end
   end
  
   def login
-    @user = User.new(user: params[:user], password: params[:password], count: 1)
+    
     if User.find_by user: params[:user] == nil
       print ERR_BAD_CREDENTIALS
       return ERR_BAD_CREDENTIALS
