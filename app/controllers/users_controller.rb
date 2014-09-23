@@ -18,11 +18,11 @@ class UsersController < ApplicationController
   end
   
   def add
-    User.add(params[:user], params[:password])
+    User.add(user: params[:user], password: params[:password])
   end
  
   def login   
-    User.login(params[:user], params[:password])
+    User.login(user: params[:user], password: params[:password])
   end
   
   def TESTAPI_resetFixture
