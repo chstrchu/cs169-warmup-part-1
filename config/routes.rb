@@ -4,7 +4,7 @@ Rails.application.routes.draw do
 
   # You can have the root of your site routed with "root"
   match 'users/add' => 'users#add', via: [:post]
-  match 'users/login' => 'users#login', via [:post]
+  match 'users/login' => 'users#login', via: [:post]
   
    
   root 'welcome#index'
