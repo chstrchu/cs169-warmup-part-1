@@ -10,12 +10,12 @@ Rails.application.routes.draw do
     end
   end
   
-  resources :TESTAPI
+  resources :TESTAPI do
     member do
       post 'resetFixture
       post 'unitTests
     end
-  end
+  end 
   root 'welcome#index'
 
   # Example of regular route:
