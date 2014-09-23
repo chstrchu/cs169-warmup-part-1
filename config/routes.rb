@@ -12,8 +12,8 @@ Rails.application.routes.draw do
   
   resources :TESTAPI do
     member do
-      post 'resetFixture
-      post 'unitTests
+      post 'resetFixture'
+      post 'unitTests'
     end
   end 
   root 'welcome#index'
