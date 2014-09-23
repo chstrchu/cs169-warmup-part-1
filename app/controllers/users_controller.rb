@@ -39,21 +39,23 @@ class UsersController < ApplicationController
     end
   end
  
-  def login
-    
-    if User.find_by user: params[:user] == nil
+  def login   
+    user = User.find_by user: params[:user]
+    if user == nil
       print ERR_BAD_CREDENTIALS
       return ERR_BAD_CREDENTIALS
-    else
-      user = User.find_by user: params[:user]
+    else  
       user.count = user.count + 1
       user.save
       print user.count
       return user.count
     end
   end
-      
- 
+  
+  def TESTAPI_resetFixture
+     User.destroy_all()
+     return SUCCESS
+  end 
   
   
 end
