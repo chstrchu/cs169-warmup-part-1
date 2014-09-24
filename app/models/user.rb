@@ -13,9 +13,7 @@ class User < ActiveRecord::Base
       b = self.password
       user = User.new(user: a, password: b, count: 1)
       name = User.find_by user: a
-      print name
       if name != nil
-        print "in loop"
         {errCode: ERR_USER_EXISTS}
       elsif a.length > 128 or a == ''
         {errCode: ERR_BAD_USERNAME}
