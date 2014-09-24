@@ -40,8 +40,11 @@ class User < ActiveRecord::Base
   end
   
   
-  
-  
+  def self.testAPI_unitTests()
+    %x(rspec > test_result)
+    output = %x(cat test_result)
+    return output
+  end 
 
 
 

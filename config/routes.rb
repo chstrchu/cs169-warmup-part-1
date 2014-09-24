@@ -6,6 +6,7 @@ Rails.application.routes.draw do
   match 'users/add' => 'users#add', via: [:post]
   match 'users/login' => 'users#login', via: [:post]
   match 'TESTAPI/resetFixture' => 'users#testAPI_resetFixture', via: [:post]
+  match 'TESTAPI/unitTests' => 'users#testAPI_unitTests', via: [:post]
   
    
   root 'welcome#index'

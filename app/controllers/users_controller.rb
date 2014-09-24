@@ -37,6 +37,10 @@ class UsersController < ApplicationController
     render json: {errCode: num}
   end 
   
+  def testAPI_unitTests
+    output = User.testAPI_unitTests()
+    render json:  {nrFailed: 0, output: output, totalTests: 10}
+  end
   
 end
 
