@@ -43,7 +43,19 @@ class User < ActiveRecord::Base
   def self.testAPI_unitTests()
     %x(rspec > test_result)
     output = %x(cat test_result)
-    return output
+    string_output = output.to_s
+    array = string_output.split(/\n/)
+    i = 0
+    while i < array.length
+       if (/[123456789][0123456789] examples\, [123456789][0123456789] failures/ =~ array[i]) != nil or (/[012456789] examples\, [0123456789] [failures failure]/ =~ array[i]) != nil
+         target_string = array[i]
+       end
+      i = i + 1
+    end
+    new_string = target_string.strip.split(/\s+/)
+    target_example = new_string[0]
+    target_failure = new_string[2]
+    return [target_failure, array, target_example
   end 
 
 
