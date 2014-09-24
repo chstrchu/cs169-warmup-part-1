@@ -13,22 +13,17 @@ class User < ActiveRecord::Base
       b = self.password
       user = User.new(user: a, password: b, count: 1)
       name = User.find_by user: a
-      
+      print name
       if name != nil
-        print ERR_USER_EXISTS
-        return ERR_USER_EXISTS
-      end
-      if a.length > 128 or a == nil
-        print ERR_BAD_USERNAME
-        return ERR_BAD_USERNAME
-      end
-      if b.length > 128
-        print ERR_BAD_PASSWORD
-        return ERR_BAD_PASSWORD
+        print "in loop"
+        {errCode: ERR_USER_EXISTS}
+      elsif a.length > 128 or a == ''
+        {errCode: ERR_BAD_USERNAME}
+      elsif b.length > 128
+        {errCode: ERR_BAD_PASSWORD}
       else
-        user.save
-        print SUCCESS
-        return SUCCESS
+        user.save    
+        {errCode: SUCCESS, count: 1}
       end
   end 
   
@@ -37,19 +32,17 @@ class User < ActiveRecord::Base
     b = self.password
     user = User.find_by user: a
     if user == nil
-      print ERR_BAD_CREDENTIALS
-      return ERR_BAD_CREDENTIALS
+      {errCode: ERR_BAD_CREDENTIALS}
     else
       user.count = user.count + 1
       user.save
-      print user.count
-      return user.count
+      {errCode: SUCCESS, count: user.count}
     end
   end
   
   def testAPI_resetFixture()
     User.destroy_all()
-    return SUCCESS
+    {errcode: SUCCESS}
   end
   
   

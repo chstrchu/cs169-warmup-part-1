@@ -15,17 +15,20 @@ class UsersController < ApplicationController
   
   def add
     user = User.new(user: params[:user], password: params[:password])
-    user.add()
+    @return = user.add()
+    render json: @return
   end
  
   def login
     user = User.new(user: params[:user], password: params[:password])   
-    user.login()
+    @return = user.login()
+    render json: @return
   end
   
   def testAPI_resetFixture
     user = User.new(user: "dummy")
-    user.testAPI_resetFixture()
+    @return = user.testAPI_resetFixture()
+    render json: @return
   end 
   
   
