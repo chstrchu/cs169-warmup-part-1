@@ -14,10 +14,14 @@ class UsersController < ApplicationController
   end
   
   def add
-    user = User.new(user: params[:user], password: params[:password])
-    @return = user.add()
-    render json: @return
+    num = User.add(params[:user], params[:password])
+    if num > 0
+      render json: {errCode: User::SUCCESS, count: num}
+    else
+      render json: {errCode: num}
+    end 
   end
+  
  
   def login
     user = User.new(user: params[:user], password: params[:password])   

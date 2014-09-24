@@ -8,27 +8,23 @@ class User < ActiveRecord::Base
                     length: { maximum: 128 }
   validates :password, length: { maximum: 128 }
   
-  def add()
-      a = self.user
-      b = self.password
-      user = User.new(user: a, password: b, count: 1)
-      name = User.find_by user: a
+  def self.add(user, password)
+      user = User.new(user: user, password: password, count: 1)
+      name = User.find_by user: user
       if name != nil
-        {errCode: ERR_USER_EXISTS}
-      elsif a.length > 128 or a == ''
+        ERR_BAD_USERNAME
+      elsif user.length > 128 or user == ''
         {errCode: ERR_BAD_USERNAME}
-      elsif b.length > 128
+      elsif password.length > 128
         {errCode: ERR_BAD_PASSWORD}
       else
         user.save    
-        {errCode: SUCCESS, count: 1}
+        return 1
       end
   end 
   
-  def login()
-    a = self.user
-    b = self.password
-    user = User.find_by user: a
+  def self.login(user, password)
+    user = User.find_by user: user
     if user == nil
       {errCode: ERR_BAD_CREDENTIALS}
     else
