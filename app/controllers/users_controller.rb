@@ -24,15 +24,17 @@ class UsersController < ApplicationController
   
  
   def login
-    user = User.new(user: params[:user], password: params[:password])   
-    @return = user.login()
-    render json: @return
+    num = User.login(params[:user], params[:password]) 
+    if num > 0
+      render json: {errCode: User::SUCCESS, count: num}
+    else
+      render json: {errCode: num}
+    end
   end
   
   def testAPI_resetFixture
-    user = User.new(user: "dummy")
-    @return = user.testAPI_resetFixture()
-    render json: @return
+    num = User.testAPI_resetFixture()
+    render json: {errCode: num}
   end 
   
   
