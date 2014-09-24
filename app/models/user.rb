@@ -8,48 +8,35 @@ class User < ActiveRecord::Base
                     length: { maximum: 128 }
   validates :password, length: { maximum: 128 }
   
-  def add()
-      a = self.user
-      b = self.password
-      user = User.new(user: a, password: b, count: 1)
-      name = User.find_by user: a
-      
+  def self.add(user, password)
+      user_object = User.new(user: user, password: password, count: 1)
+      name = User.find_by user: user
       if name != nil
-        print ERR_USER_EXISTS
-        return ERR_USER_EXISTS
-      end
-      if a.length > 128 or a == nil
-        print ERR_BAD_USERNAME
-        return ERR_BAD_USERNAME
-      end
-      if b.length > 128
-        print ERR_BAD_PASSWORD
-        return ERR_BAD_PASSWORD
+        ERR_USER_EXISTS
+      elsif user.length > 128 or user == ''
+        ERR_BAD_USERNAME
+      elsif password.length > 128
+        ERR_BAD_PASSWORD
       else
-        user.save
-        print SUCCESS
-        return SUCCESS
+        user_object.save    
+        return user_object.count
       end
   end 
   
-  def login()
-    a = self.user
-    b = self.password
-    user = User.find_by user: a
-    if user == nil
-      print ERR_BAD_CREDENTIALS
-      return ERR_BAD_CREDENTIALS
+  def self.login(user, password)
+    user_object = User.find_by user: user
+    if user_object == nil
+      ERR_BAD_CREDENTIALS
     else
-      user.count = user.count + 1
-      user.save
-      print user.count
-      return user.count
+      user_object.count = user_object.count + 1
+      user_object.save
+      return user_object.count
     end
   end
   
-  def testAPI_resetFixture()
+  def self.testAPI_resetFixture()
     User.destroy_all()
-    return SUCCESS
+    SUCCESS
   end
   
   
