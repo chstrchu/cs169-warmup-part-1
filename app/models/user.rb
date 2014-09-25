@@ -53,9 +53,9 @@ class User < ActiveRecord::Base
       i = i + 1
     end
     new_string = target_string.strip.split(/\s+/)
-    target_example = new_string[0]
-    target_failure = new_string[2]
-    return [target_failure, array, target_example]
+    target_example = new_string[0].to_i
+    target_failure = new_string[2].to_i
+    return [target_failure, string_output, target_example]
   end 
 
 
