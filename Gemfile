@@ -1,10 +1,10 @@
 source 'https://rubygems.org'
 gem 'rspec-rails'
 
-#group :production do
-#  gem 'pg'
-#  gem 'rails_12factor', '0.0.2'
-#end
+group :production do
+  gem 'pg'
+  gem 'rails_12factor', '0.0.2'
+end
 
 group :development, :test do
   gem 'sqlite3', '1.3.8'
