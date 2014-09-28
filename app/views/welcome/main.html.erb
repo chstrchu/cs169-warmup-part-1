@@ -1,6 +1,6 @@
-<h1>Login or Add User</h1>
 
-<%= form_for :user, url =>  do |f| %>
+
+<%= form_for :user, :url => users_add_path do |f| %>
     <p>
 	    <%= f.label :username  %>
 	    <%= f.text_field :username %>
@@ -12,8 +12,8 @@
 	</p>
 	   
 	<p>
-		<%= f.submit 'Login' %>
-		<%= f.submit 'Add User'%>
+		<%= f.submit %>
+		
 	</p>
 	
 <% end %>

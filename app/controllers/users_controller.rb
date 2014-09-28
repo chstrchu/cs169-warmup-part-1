@@ -6,6 +6,7 @@ class UsersController < ApplicationController
     else
       login
     end
+  end
   
   def add
     num = User.add(params[:user], params[:password])

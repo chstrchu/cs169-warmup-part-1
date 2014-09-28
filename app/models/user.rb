@@ -10,8 +10,8 @@ class User < ActiveRecord::Base
   
   def self.add(user, password)
       user_object = User.new(user: user, password: password, count: 1)
-      name = User.find_by user: user
-      if name != nil
+      #name = User.find_by user: user
+      if User.find_by user: user != nil
         ERR_USER_EXISTS
       elsif user.length > 128 or user == ''
         ERR_BAD_USERNAME
