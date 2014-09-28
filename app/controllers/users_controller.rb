@@ -1,8 +1,11 @@
 class UsersController < ApplicationController
   
-  
-  
-  
+  def create
+    if params[:commit]  == 'Add User'
+      add
+    else
+      login
+    end
   
   def add
     num = User.add(params[:user], params[:password])
