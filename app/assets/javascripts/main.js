@@ -9,7 +9,7 @@ $(document).ready(function(){
 		console.log(password);
         $.ajax({
 	        type: 'post',
-	        url: 'http://localhost:3000/users/login',
+	        url: 'http://afternoon-coast-1369.herokuapp.com/users/login',
 	        data: JSON.stringify({user: user, password: password}),
 	        contentType:'application/json', 
 	        dataType: 'json',
@@ -37,7 +37,7 @@ $(document).ready(function(){
 		console.log(password);
         $.ajax({
 	        type: 'post',
-	        url: 'http://localhost:3000/users/add',
+	        url: 'http://afternoon-coast-1369.herokuapp.com/users/add',
 	        data: JSON.stringify({user: user, password: password}),
 	        contentType:'application/json', 
 	        dataType: 'json',
