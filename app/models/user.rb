@@ -10,8 +10,8 @@ class User < ActiveRecord::Base
   
   def self.add(user, password)
       user_object = User.new(user: user, password: password, count: 1)
-      #name = User.find_by user: user
-      if User.find_by user: user != nil
+      name = User.find_by user: user
+      if name != nil
         ERR_USER_EXISTS
       elsif user.length > 128 or user == ''
         ERR_BAD_USERNAME
@@ -25,7 +25,7 @@ class User < ActiveRecord::Base
   
   def self.login(user, password)
     user_object = User.find_by user: user
-    if user_object == nil
+    if user_object == nil or password != user_object.password
       ERR_BAD_CREDENTIALS
     else
       user_object.count = user_object.count + 1

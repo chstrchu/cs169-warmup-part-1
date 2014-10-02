@@ -1,19 +1,29 @@
-
-
-<%= form_for :user, :url => users_add_path do |f| %>
-    <p>
-	    <%= f.label :username  %>
-	    <%= f.text_field :username %>
-	</p>
+<html>
+<head>
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+	<script type="text/javascript"></script>
+</head>
+<body>
+	<div id="main-screen">
+		<h1 class ="message"></h1>
+		<form id="main-form">
+			<label for="name"></label>
+			<input type="text" name="name" placeholder="username"><br>
+			<label for="password"></label>
+			<input type="password" name="password" placeholder="password"><br>
+			<input id="login-button" type="submit" value="Login">
+			<input id="addUser-button" type="submit" value="Add User">
+		</form>
+	</div>
 	
-	<p>
-		<%= f.label :password %>
-		<%= f.text_field :password %>
-	</p>
-	   
-	<p>
-		<%= f.submit %>
-		
-	</p>
-	
-<% end %>
+	<div id="loggedin-screen">
+		<p class="display">Welcome <span class="username"></span><br>
+		    You have logged in <span class="count"></span> times.	
+		</p>	
+		<form id="logout">
+			<input id="logout-button" type="submit" value="Logout">
+		</form>
+	</div>
+</body>
+</html>
+
