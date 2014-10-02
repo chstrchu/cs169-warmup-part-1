@@ -1,18 +1,5 @@
 class UsersController < ApplicationController
   
-  
-  
-  def create
-    @user = User.new(user: params[:user], password: params[:password])
-    
-    @user.save
-    redirect_to @user  
-  end
-  
-  def show
-    @user = User.find(params[:id])
-  end
-  
   def add
     num = User.add(params[:user], params[:password])
     if num > 0
@@ -43,4 +30,3 @@ class UsersController < ApplicationController
   end
   
 end
-

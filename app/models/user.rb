@@ -25,7 +25,7 @@ class User < ActiveRecord::Base
   
   def self.login(user, password)
     user_object = User.find_by user: user
-    if user_object == nil
+    if user_object == nil or password != user_object.password
       ERR_BAD_CREDENTIALS
     else
       user_object.count = user_object.count + 1

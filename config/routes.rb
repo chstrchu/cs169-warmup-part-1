@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get 'welcome/main'
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
@@ -9,7 +11,7 @@ Rails.application.routes.draw do
   match 'TESTAPI/unitTests' => 'users#testAPI_unitTests', via: [:post]
   
    
-  root 'welcome#index'
+  root 'welcome#main'
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
